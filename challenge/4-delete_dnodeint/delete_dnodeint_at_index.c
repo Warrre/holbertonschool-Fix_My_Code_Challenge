@@ -43,8 +43,9 @@ int delete_dnodeint_at_index(dlistint_t **head, unsigned int index)
 	}
 	else
 	{
-		(*head)->prev->prev = (*head)->prev;
-		free(*head);
+        /* Make the free head in the right position after the condition*/
+        /* Do (*head->prev->prev) is wrong*/
+		(*head)->prev->next = (*head)->next;
 		if ((*head)->next)
 			(*head)->next->prev = (*head)->prev;
 		free(*head);
